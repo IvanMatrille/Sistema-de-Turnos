@@ -1,15 +1,18 @@
 <?php
-require_once '../conexion.php';
+    include_once "../conexion.php";
 
-$matricula = $_POST['Matricula'];
+    //var_dump($_GET);
+    $matricula = $_GET['matricula'];
 
-$query = "SELECT Matricula, Nombre FROM estudiante WHERE Matricula = '$matricula'";
+    $filas = array();
+    
+    $sql = "SELECT Matricula, Fecha, Hora, Entregado FROM cita WHERE Matricula = '$matricula'";
 
-$insertar = mysqli_query($conexion, $query);
-if ($insertar) 
-{
-    echo 1;
+    $resultado = mysqli_query($conexion, $sql);
 
-} else {
-    echo "Error al cargar los datos: ". mysqli_error($Conexion);
-}
+    while ($fila = $resultado->fetch_assoc())
+    {
+        array_push($filas, $fila);
+    }
+    
+    echo json_encode($filas);

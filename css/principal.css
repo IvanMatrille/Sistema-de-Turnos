@@ -1,0 +1,38 @@
+.centrar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; 
+}
+
+#matricula, #btnMatricula{
+    position: relative;
+    left: 100px;
+}
+
+#detalleCita{
+    border: lightseagreen 1.5px solid;
+    width: 50%;
+    border-radius: 2%;
+    padding: 10px;
+    margin-left: 350px;
+    margin-top: 70px;
+}
+
+#txtCita{
+    background: lightgreen;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#txtDisponibilidad{
+    background: lightpink;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#btnVolver{
+    position: relative;
+    left: 590px;
+    top: -440px;
+}
