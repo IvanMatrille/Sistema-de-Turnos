@@ -102,7 +102,7 @@ function verificaCita()
         {
             let datos = JSON.parse(response);
 
-            if(datos[0].total < 5)
+            if(datos[0].total < 2)
             {
                 $("#txtDisponibilidad").text("");
                 $("#btnRegistarCita").prop('disabled', false)
