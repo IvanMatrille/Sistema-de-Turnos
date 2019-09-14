@@ -3,14 +3,14 @@
 require_once '../conexion.php';
 
 $dato = $_GET["id"];
+$FechaEntrega = date ("Y-m-d H:i:s");
 
-$rows = array();
+$queryCita = "UPDATE cita SET entregado = 1  WHERE Matricula = '$dato'";
+$queryHistorialCita = "UPDATE historialCita SET entregado = 1 , FechaEntrega = '$FechaEntrega' WHERE Matricula = '$dato' "; 
 
-$query = "UPDATE cita SET entregado = 1 WHERE Matricula = '$dato'";
 
-$sql = mysqli_query($conexion, $query);
 
-if ($sql) 
+if (mysqli_query($conexion, $queryCita) && mysqli_query($conexion, $queryHistorialCita)) 
 {
     echo 1;
 } else {

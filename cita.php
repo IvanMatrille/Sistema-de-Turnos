@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cita</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/principal.css" media="screen" />
 </head>
 <body>
     
-<div id="detalleCita">
+<div class="row">
+  <div class="col-lg-6 col-centrada">
+
+
     <input type="hidden" id="matricula" name="matricula" value="<?php echo $_GET['matricula']?>">
     <label for="txtMatricula">Matricula:</label>
     <h2 id="txtMatricula" name="txtMatricula">Matricula</h2>
@@ -25,18 +27,27 @@
             <option></option>
         </select>
 
-    <input type="button" class="btn btn-primary" id="btnRegistarCita" name="btnRegistarCita" value="Registrar"><br><br>
-
+        <div class="row">
+           
+           <div class = "col-sm-2" >
+           
+              <input type="button" class="btn btn-primary" id="btnRegistarCita" name="btnRegistarCita" value="Registrar" disabled> <br><br>
+          </div>
+    
+         <div id = "btnVolverContainer" class = "col-sm-2" >
+            <input type="button" class="btn btn-info" id="btnVolver" value="Volver" onclick=" location.href='index.php'">
+         </div>
+        </div>
     <h2 id="txtCita" name="txtCita" value=""></h2>
     <h2 id="txtDisponibilidad" name="txtDisponibilidad" value=""></h2>
-    <input type="button" class="btn btn-info" id="btnVolver" value="Volver" onclick=" location.href='index.php'">
+    
+
 
 </div>
+</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
         <script src="js/cita.js"></script>
         <script src="js/estudiante.js"></script>
 

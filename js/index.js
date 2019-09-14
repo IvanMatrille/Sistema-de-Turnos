@@ -3,7 +3,7 @@
 function registra()
 {
     let datos = {
-        Matricula: $("#matricula")
+        Matricula: $("#matricula").val()
     }
 
     $.ajax({
@@ -17,21 +17,68 @@ function registra()
                 
             }else{
 
-                alert("Verifique que haya introducido su matricula correctamente");
+              
 
             }
         }
     });
 }
 
+function verificarMatricula (matricula)
+{
+   let datos = {
+      Matricula : matricula
+   } 
 
-$("#frmConsulta").submit(function(e) {
-    e.preventDefault();
-    let matricula = $('#matricula').val();
-
-    if (matricula != "") {
-        registrar();
-    } else {
-        alert("Introduzca su matricula para continuar!");
+   let status;
+   $.ajax({
+    type: "POST",
+    url: "DB/index/verificarMatricula.php",
+    
+    data: datos,
+    async : false,    
+    success: function(response)
+    {  
+        if(response == 0)
+        {
+         status = false;
+        }else
+        {
+          status = true;
+        }
     }
 });
+   
+   return status;
+
+}
+
+
+$(document).ready (function () {
+
+
+    $('form[name = "frmConsulta"]').submit(function(e) {
+      
+        let matricula = $('#matricula').val();
+       
+    
+        if (matricula != "") {
+           // registra();
+           if (!verificarMatricula(matricula) )
+              {
+                alert("La Matricula no es valida o no esta activa");
+                e.preventDefault();
+
+              }
+        } else {
+            alert("Introduzca su matricula para continuar!");
+        }
+    });
+
+
+}); 
+
+
+
+
+

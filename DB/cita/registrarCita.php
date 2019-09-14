@@ -4,13 +4,21 @@ require_once '../Conexion.php';
 $matricula = $_POST['matricula'];
 $fecha = $_POST['fecha'];
 $hora = $_POST['hora'];
+$fechaRegistroCita = date ("Y-m-d H:i:s");
 
-$query = "INSERT INTO cita(Matricula, Fecha, hora)VALUES('$matricula', '$fecha', '$hora')";
+ $queryCita = "INSERT INTO cita(Matricula, Fecha, hora)VALUES('$matricula', '$fecha', '$hora')";
+ 
+ mysqli_query($conexion, $queryCita);
 
-$insertar = mysqli_query($conexion, $query);
+  $IdCita  = mysqli_insert_id($conexion);
 
-if ($insertar) {
+ $queryHistorialCita = "INSERT INTO historialCita (Id,IdCita,Matricula,Fecha,hora,FechaRegistroCita) VALUES (null,$IdCita ,'$matricula', '$fecha' , '$hora', '$fechaRegistroCita') ";
+ 
+ 
+ 
+
+if ( $IdCita != 0  && mysqli_query($conexion, $queryHistorialCita) ) {
     echo 1;
 } else {
-    echo "Error al intentar guardar los datos: ". mysqli_error($Conexion);
+    echo "Error al intentar guardar los datos: ". mysqli_error($conexion);
 }
