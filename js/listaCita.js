@@ -57,7 +57,8 @@ function listarCitas()
                 row += "<td> " + datos[i].Nombre + "</td>";
                 row += "<td> " + datos[i].Fecha + "</td>";
                 row += "<td> " + datos[i].hora + "</td>";
-                row +='<td> <button id="btnEntregado'+i+'" class="btn btn-success btn-sm" onclick="entregarCarnet("' + datos[i].Matricula + '")" data-toggle="modal" data-target="#modalRegistro">Entregar</button> </td>';
+                row +=  '<td>' + (datos[i].entregado == 0 ? '<button id="btnEntregado'+i+'" class="btn btn-success btn-sm" style = "padding-left : 14px; padding-right : 14px; " onclick="entregarCarnet('+ "'" + datos[i].Matricula + "'"+ ')" data-toggle="modal" data-target="#modalRegistro" >Entregar</button>' 
+                                                      : '<button  class="btn btn-danger btn-sm" style = "opacity : 1"  onclick="" disabled>Entregado</button>') + ' </td>' ; 
             }
 
             $("#tbodyListaCitas").html(row);
@@ -122,6 +123,30 @@ function entregarCarnet(matricula)
     }
 }
 
+
+function checkTodosEvento () {
+
+     let isChecked = $("#checkTodos").is(":checked");
+
+    $("#fechaActualListar").prop ("disabled" , isChecked);
+    $("#selHorasListar").prop ("disabled", isChecked);
+    $("#txtBusqueda").val ("");
+
+    if (isChecked)
+    {
+        listarCitas();
+
+    }
+
+    else
+     {
+       listarFiltro();
+
+     }
+  
+    
+}
+
 $("#selHorasListar").change(function(){
 
     listarFiltro();
@@ -134,12 +159,14 @@ $("#fechaActualListar").change(function(){
 
 });
 
+
+
 $(() => {
 
     
     fecha();
     listaHoras();
-    listarFiltro();
+    checkTodosEvento();
 
    $("#txtBusqueda").keyup( function () {
 
@@ -152,9 +179,10 @@ $(() => {
 
     });
 
-
-
    });
+
+
+   $("#checkTodos").click (checkTodosEvento );
 
 
 });

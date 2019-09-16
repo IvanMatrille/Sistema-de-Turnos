@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"> 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
    <!--<link rel="stylesheet" href="css/all.css" > -->
+   
     <link rel="stylesheet" type="text/css" href="css/principal.css" media="screen" />
 </head>
 <body>
@@ -15,9 +16,9 @@
 <div class="col-md-12 table-responsive" >
     <br>
     <div class="container">
-        <div class="row">
+        <div class="form-row " >
 
-             <div class=" col col-lg-3  col-md-3 col-sm-5 col-10" style = "margin-left : -7%">
+             <div class=" col col-lg-3 mr-lg-auto  col-md-3 col-sm-5 col-12 form-group"   >
              
              <label class="sr-only" for="txtBusqueda">Buscar...</label>
              <div class="input-group ">
@@ -32,21 +33,37 @@
           </div>
         </div>
 
+            
+            <div class=" col col-lg-3  col-md-4 col-sm-6 col-12 form-group"   >
 
-            <div class=" col col-lg-4  col-md-6 col-sm-6 col-12" style = "margin-left : 33%; margin-right: -17%" >
-            <input type="date" class="form-control md-form form-group w-50" id="fechaActualListar" name="fechaActualListar" value="">               
-                </div>
+            <div class="input-group ">
+             <div class="input-group-prepend">
+              <div class="input-group-text">
+
+                                            
+                <input class="form-check" type="checkbox" id="checkTodos" checked>
+                <label  class = "form-check-label" for = "checkTodos" style ="font-weight : bold; ">  Todos</label>
+                             
+                 </div>
+          
+                          
+            </div>
+
+             <input type="date" class="form-control" id="fechaActualListar" name="fechaActualListar" value="" > 
+           </div>   
+             
+         </div>
                
-               <div class = "col col-lg-4 col-md-5 col-sm-6 col-12 " style = "margin-right : -20.5%;">
+               <div class = "col col-lg-2 col-md-3 col-sm-6 col-12 form-group " >
                               
-               <select id="selHorasListar" class="form-control md-form form-group w-50" name="selHorasListar">
+               <select id="selHorasListar" class="form-control" name="selHorasListar">
                    <option></option>
                </select>
 
                </div>
 
-            <div class=" col col-lg-1 col-sm-1" >
-                <input type="button" class="btn btn-info" id="btnVolver" value="Volver" onclick=" location.href='index.php'">
+            <div class=" col col-lg-1 col-sm-2 col-3" >
+                <input type="button" class="btn btn-info form-control" id="btnVolver" value="Volver" onclick=" location.href='index.php'">
             </div>
             
         </div>

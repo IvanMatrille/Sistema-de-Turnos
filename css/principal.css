@@ -53,3 +53,22 @@
     position: relative;
     left: 50px;
 }
+
+
+
+#fechaActualListar:disabled
+{
+
+    opacity: 0.5 ;
+   
+
+} 
+
+
+#selHorasListar:disabled
+{
+
+    opacity: 0.5 ;
+   
+
+} 
