@@ -23,7 +23,7 @@ function detalleCita(matricula)
         url: "DB/cita/detalleCita.php",
         data: "matricula="+matricula,
         success: function(response)
-        {
+        {   
             let datos = JSON.parse(response);
 
             let horario = datos[0].Fecha;
@@ -40,7 +40,7 @@ function detalleCita(matricula)
 
 function listaHoras()
 {
-    $.ajax({
+        $.ajax({
         type: "GET",
         url: "DB/hora/listaHora.php",
         async : false,
@@ -91,36 +91,36 @@ function registrarCita()
 
 function verificaCita()
 {
+
+    
+
     let datos = {
         fecha: $("#fechaActual").val(),
         hora: $("#selHoras").val()
     }
 
-    $.ajax({
+     return   $.ajax({
         type: "POST",
         url: "DB/cita/cantidadCita.php",
         data: datos,
         success: function(response)
         {
             let datos = JSON.parse(response);
+            let cita = $("#txtCita").text();
+       
 
-        if ($("#selHoras").val() == 0)
-        {
-            $("#btnRegistarCita").prop('disabled', true)
-
-        }else{
-
-            if(datos[0].total < 40)
+            if(datos[0].total < 40  )
             {
                 $("#txtDisponibilidad").text("");
-                $("#btnRegistarCita").prop('disabled', false)
+                  
+                $("#btnRegistarCita").prop('disabled', false);
 
             }else{
-
+                
                 $("#txtDisponibilidad").text("Horario no disponible");
-                $("#btnRegistarCita").prop('disabled', true)
+                $("#btnRegistarCita").prop('disabled', true);
             }
-        }
+        
            
         }     
 
@@ -128,15 +128,32 @@ function verificaCita()
     
 }
 
+
+
+
+
 $("#selHoras").change(function(){
    
-    verificaCita();
     
+    if ($("#selHoras").val() == 0)
+    {
+        $("#btnRegistarCita").prop('disabled',true);
 
+    }
+
+    else
+    {
+        verificaCita();
+    }
+   
+   
+    
+   
+   
 });
 
 $("#fechaActual").change(function(){
-    
+   
     verificaCita();
 
 });
@@ -150,48 +167,41 @@ $("#btnRegistarCita").click(function()
 
 $(() => {
 
-    //alert("ho" + $("#selHoras").val());
-    
-    function verifica()
-    {
-        verificaCita();
-        let cita = $("#txtCita").text();
-
-        if(cita.length == 0)
-        {
-            $("#fechaActual").prop('disabled', false);
-            $("#selHoras").prop('disabled', false);
-            $("#btnRegistarCita").prop('disabled', false); 
-            $("#txtDisponibilidad").text("Horario no disponible");
-             
-         }else{
-
-            $("#fechaActual").prop('disabled', true);
-            $("#selHoras").prop('disabled', true);
-            $("#btnRegistarCita").prop('disabled', true); 
-            $("#txtDisponibilidad").text("");    
-         }
-    }
-    //  setInterval(verifica, 200);
+  
       
 
     fecha();
-    detalleCita( $("#matricula").val() ).then ( function ()
-    {
-            
-        let cita = $("#txtCita").text();
-        if(cita.length != 0 )
-        {
-            $("#fechaActual").prop('disabled', true);
-            $("#selHoras").prop('disabled', true);
-            $("#btnRegistarCita").prop('disabled', true);  
-         }
+
+    detalleCita( $("#matricula").val() ).then  ( () => {   
+
+
+      const tieneCita = () => {   
+          
+            let cita = $("#txtCita").text();
+
+           return  cita.length != 0;  
+        
+                            }
+
+        if (tieneCita())
+        { 
+          $("#btnRegistarCita").prop('disabled',true);
+          $("#fechaActual").prop('disabled', true);
+          $("#selHoras").prop('disabled', true);
+
+        }
 
     });
 
     listaHoras();
-    verifica();
-
+    
+     
+    $("#fechaActual").prop('disabled', false);
+    $("#selHoras").prop('disabled', false);
+    
+     
+    
+    
   
 
 });

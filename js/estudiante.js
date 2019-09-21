@@ -7,9 +7,8 @@ function detalleEstudiante(matricula)
         success: function(response)
         {
             let datos = JSON.parse(response);
-
-            $("#txtMatricula").text(datos[0].Matricula),
-            $("#txtNombre").text(datos[0].Nombre)
+        
+            $("#txtNombre").text(datos[0].Nombre);
         }
     });
 }
@@ -17,5 +16,6 @@ function detalleEstudiante(matricula)
 $(() => {
 
     detalleEstudiante( $("#matricula").val() );
+
 
 });
